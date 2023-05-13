@@ -1,23 +1,26 @@
 import requests
-from api_passwords import API_KEY
-# Set up TomTom API credentials
-api_key = API_KEY
+import folium
+import pandas as pd
+from sodapy import Socrata
 
-# API endpoint for traffic incidents in NYC
-url = f'https://api.tomtom.com/traffic/services/4/incidentDetails/s3/ALL/13/-74/14/-73/json?key={api_key}'
+import requests.exceptions
+from api_passwords import APP_TOKEN
 
-# Send request to the API
-response = requests.get(url)
+client = Socrata("data.cityofnewyork.us", None)
 
-# Check if the request was successful
-if response.status_code == 200:
-    # Extract traffic incidents from the response
-    incidents = response.json()['tm']['poi']
+MAX_RETRIES = 3
+retry_count = 0
+ client = Socrata(data.cityofnewyork.us,
+                 APP_TOKEN,
+                 username="saadahmadsabri03@gmail.com",
+                 password="AFakePassword")
+while retry_count < MAX_RETRIES:
+    try:
+        results = client.get("i4gi-tjb9", limit=10)
+        break  # Break the loop if the request is successful
+    except requests.exceptions.ReadTimeout:
+        retry_count += 1
+        print(f"Request timed out. Retrying... (Attempt {retry_count}/{MAX_RETRIES})")
 
-    # Iterate over the incidents and print their coordinates
-    for incident in incidents:
-        location = incident['point']['coordinates']
-        latitude, longitude = location['latitude'], location['longitude']
-        print(f"Traffic Jam at Latitude: {latitude}, Longitude: {longitude}")
-else:
-    print("Error occurred while accessing TomTom API.")
+results_df = pd.DataFrame.from_records(results)
+print(results_df)
