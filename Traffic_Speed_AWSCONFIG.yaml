@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  TrafficSpeedMap:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.py.lambda_handler
+      Runtime: python3.10
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: >-
+        arn:aws:iam::038793192446:role/service-role/Traffic_Speed_Map-role-brsqt1lj
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto

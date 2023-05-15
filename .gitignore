@@ -1,1 +1,38 @@
 api_passwords.py
+# AWS credentials and configuration files
+.aws/credentials
+.aws/config
+
+# Serverless Framework files
+.serverless/
+.serverless.yml
+
+# AWS Elastic Beanstalk files
+.ebextensions/
+.elasticbeanstalk/
+
+# AWS CloudFormation files
+*.template
+*.template.yaml
+*.template.yml
+*.stack
+
+# AWS SAM (Serverless Application Model) files
+.sam/
+.template.sam
+.template.yaml
+.template.yml
+
+# Local development files (e.g., local AWS profiles)
+.local/
+.env
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+
+# Miscellaneous
+*.log
+.DS_Store
